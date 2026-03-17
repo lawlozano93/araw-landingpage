@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://araw.himo.site/sitemap.xml
