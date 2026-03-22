@@ -1,9 +1,11 @@
-// Server Component — CSS-only mockups matching the real Araw app UI
+// Server Component — combined morning flow + app preview
 
 const screens = [
   {
     step: 1,
-    label: 'Goals',
+    num: '01',
+    name: 'Review Goals',
+    desc: 'Stay aligned with what matters. See your goals. Every. Single. Morning.',
     content: (
       <div className="mock-reading">
         <p className="mock-reading-text">
@@ -23,7 +25,9 @@ const screens = [
   },
   {
     step: 2,
-    label: 'Affirmations',
+    num: '02',
+    name: 'Recite Affirmations',
+    desc: 'Prime your mindset before the world gets loud.',
     content: (
       <div className="mock-reading">
         <p className="mock-reading-text centered">
@@ -41,13 +45,17 @@ const screens = [
   },
   {
     step: 3,
-    label: 'Visualize',
+    num: '03',
+    name: 'Visualize',
+    desc: 'Build the mental image of success before you start building the real thing.',
     content: (
       <div className="mock-reading">
         <p className="mock-reading-text centered">
-          Close your eyes. See the day going exactly as you intended.
+          I wake up at 6am. I exercise before the world gets loud.
           {'\n\n'}
-          What does it look like when you finish the one thing that matters most?
+          I sit down focused, ship the work that matters, and close my laptop by 5.
+          {'\n\n'}
+          I am present with the people I love. I sleep deeply.
         </p>
         <div className="mock-btn-wrap">
           <span className="mock-done-btn">Done Reading</span>
@@ -57,7 +65,9 @@ const screens = [
   },
   {
     step: 4,
-    label: 'Freewrite',
+    num: '04',
+    name: 'Freewrite',
+    desc: 'Clear the noise. Empty the inbox in your head.',
     content: (
       <div className="mock-stream">
         <div className="mock-textarea">
@@ -76,7 +86,9 @@ const screens = [
   },
   {
     step: 5,
-    label: 'One Action',
+    num: '05',
+    name: 'One Action',
+    desc: "Define the single most important thing you'll do today. Then close the app and go do it.",
     content: (
       <div className="mock-answer">
         <p className="mock-question">
@@ -102,34 +114,38 @@ function MockWindow({
   index: number
 }) {
   return (
-    <div className="mock-window reveal" style={{ ['--i' as string]: index }}>
-      {/* Title bar */}
-      <div className="mock-titlebar">
-        <div className="mock-traffic">
-          <span className="mock-tl" style={{ background: '#ff5f57' }} />
-          <span className="mock-tl" style={{ background: '#ffbd2e' }} />
-          <span className="mock-tl" style={{ background: '#28c940' }} />
+    <div className="mock-card reveal" style={{ ['--i' as string]: index }}>
+      <div className="mock-window">
+        {/* Title bar */}
+        <div className="mock-titlebar">
+          <div className="mock-traffic">
+            <span className="mock-tl" style={{ background: '#ff5f57' }} />
+            <span className="mock-tl" style={{ background: '#ffbd2e' }} />
+            <span className="mock-tl" style={{ background: '#28c940' }} />
+          </div>
+        </div>
+
+        {/* App content */}
+        <div className="mock-app-body">
+          {screen.content}
+        </div>
+
+        {/* Progress dots */}
+        <div className="mock-progress">
+          {[1, 2, 3, 4, 5].map((s) => (
+            <span
+              key={s}
+              className={`mock-dot${s <= screen.step ? ' done' : ''}${s === screen.step ? ' current' : ''}`}
+            />
+          ))}
         </div>
       </div>
 
-      {/* App content */}
-      <div className="mock-app-body">
-        {screen.content}
-      </div>
-
-      {/* Progress dots */}
-      <div className="mock-progress">
-        {[1, 2, 3, 4, 5].map((s) => (
-          <span
-            key={s}
-            className={`mock-dot${s <= screen.step ? ' done' : ''}${s === screen.step ? ' current' : ''}`}
-          />
-        ))}
-      </div>
-
-      {/* Step label */}
-      <div className="mock-step-label">
-        Step {screen.step} · {screen.label}
+      {/* Step info below window */}
+      <div className="mock-info">
+        <span className="mock-info-num">{screen.num}</span>
+        <span className="mock-info-name">{screen.name}</span>
+        <p className="mock-info-desc">{screen.desc}</p>
       </div>
     </div>
   )
@@ -137,16 +153,16 @@ function MockWindow({
 
 export function AppPreviewSection() {
   return (
-    <section className="preview-section">
+    <section id="how-it-works" className="preview-section">
       <div className="preview-header reveal">
-        <p className="preview-label">A peek inside</p>
+        <p className="preview-label">The morning flow</p>
         <h2 className="preview-heading">
-          Five minutes.
+          Five steps.
           <br />
-          This is what they look like.
+          Five minutes.
         </h2>
         <p className="preview-sub">
-          Each morning, Araw walks you through five focused steps — one screen at a time.
+          A guided ritual that takes you from asleep to intentional — every morning.
         </p>
       </div>
 

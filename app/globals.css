@@ -797,7 +797,8 @@ footer {
   .features-section { padding: 60px 24px; }
   .preview-section { padding: 60px 0; }
   .preview-header { padding: 0 24px; }
-  .mock-window { width: 280px; flex-shrink: 0; }
+  .mock-window { width: 280px; }
+  .mock-info { max-width: 280px; }
   .preview-track { padding: 24px 24px 32px; }
 }
 
@@ -1079,13 +1080,39 @@ footer {
   transform: scale(1.4);
 }
 
-/* step label below window */
-.mock-step-label {
-  text-align: center;
+/* card wrapper (window + info) */
+.mock-card {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* step info below window */
+.mock-info {
+  padding: 16px 4px 0;
+  max-width: 340px;
+}
+
+.mock-info-num {
   font-family: var(--font-mono);
   font-size: 10px;
+  font-weight: 400;
   letter-spacing: 0.08em;
+  color: var(--sun);
+  margin-right: 8px;
+}
+
+.mock-info-name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.mock-info-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
   color: var(--ink-muted);
-  margin-top: 12px;
-  text-transform: uppercase;
+  line-height: 1.55;
+  margin-top: 4px;
 }

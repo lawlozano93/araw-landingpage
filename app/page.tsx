@@ -2,7 +2,6 @@ import { Nav } from '@/components/Nav'
 import { Hero } from '@/components/Hero'
 import { WhatSection } from '@/components/WhatSection'
 import { Divider } from '@/components/Divider'
-import { FlowSection } from '@/components/FlowSection'
 import { AppPreviewSection } from '@/components/AppPreviewSection'
 import { FeaturesSection } from '@/components/FeaturesSection'
 import { DownloadSection } from '@/components/DownloadSection'
@@ -21,7 +20,6 @@ export default function Home() {
       <Hero />
       <WhatSection />
       <Divider />
-      <FlowSection />
       <AppPreviewSection />
       <FeaturesSection />
       <Divider />
