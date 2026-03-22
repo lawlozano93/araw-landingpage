@@ -1,12 +1,4 @@
-// Server Component — PlatformCard is a Client Component for click tracking
-import { PlatformCard } from './PlatformCard'
-
-const platforms = [
-  { os: 'macOS', name: 'Apple Silicon', ext: '.dmg', platform: 'apple_silicon' },
-  { os: 'macOS', name: 'Intel', ext: '.dmg', platform: 'intel_mac' },
-  { os: 'Windows', name: '10 / 11', ext: '.msi', platform: 'windows' },
-]
-
+// Server Component
 export function DownloadSection() {
   return (
     <section id="download" className="download-section">
@@ -15,29 +7,18 @@ export function DownloadSection() {
         <h2 className="download-heading reveal">Download Araw</h2>
         <p className="download-sub reveal">Free. Always will be.</p>
 
-        <div className="version-badge reveal">
-          <span className="version-dot" />
+        <div className="download-cta reveal">
           <a
             href="https://github.com/lawlozano93/araw/releases/latest"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: 'var(--ink-muted)', textDecoration: 'none', borderBottom: '1px solid var(--warm-border)', paddingBottom: '1px' }}
+            className="btn-primary"
           >
-            View latest release on GitHub →
+            Download from GitHub <span className="arrow">→</span>
           </a>
-        </div>
-
-        <div className="platform-grid reveal-stagger">
-          {platforms.map((p, i) => (
-            <PlatformCard
-              key={p.platform}
-              os={p.os}
-              name={p.name}
-              ext={p.ext}
-              platform={p.platform}
-              index={i}
-            />
-          ))}
+          <p className="download-platforms">
+            Available for macOS (Apple Silicon &amp; Intel) and Windows.
+          </p>
         </div>
 
         <div className="install-note reveal">

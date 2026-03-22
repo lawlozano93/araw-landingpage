@@ -36,14 +36,6 @@ export function Hero() {
         <a href="#download" className="btn-primary">
           Download free <span className="arrow">→</span>
         </a>
-        <a
-          href="https://github.com/lawlozano93/araw"
-          className="btn-ghost"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View source ↗
-        </a>
       </div>
     </section>
   )

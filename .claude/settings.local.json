@@ -52,7 +52,8 @@
       "Bash(curl -s \"https://api.github.com/repos/lawlozano93/araw/contents/src/components/HistorySidebar\")",
       "Bash(curl -s \"https://api.github.com/repos/worrlozano3/arow/contents/src/hooks\")",
       "Bash(python3 -c \"import json,sys; [print\\(f[''''name''''],f[''''path'''']\\) for f in json.load\\(sys.stdin\\)]\")",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "Bash(from GitHub\" button linking to releases, kept installation note:*)"
     ]
   }
 }
