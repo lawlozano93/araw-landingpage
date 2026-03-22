@@ -3,6 +3,7 @@ import { Hero } from '@/components/Hero'
 import { WhatSection } from '@/components/WhatSection'
 import { Divider } from '@/components/Divider'
 import { FlowSection } from '@/components/FlowSection'
+import { AppPreviewSection } from '@/components/AppPreviewSection'
 import { FeaturesSection } from '@/components/FeaturesSection'
 import { DownloadSection } from '@/components/DownloadSection'
 import { HimoSection } from '@/components/HimoSection'
@@ -21,6 +22,7 @@ export default function Home() {
       <WhatSection />
       <Divider />
       <FlowSection />
+      <AppPreviewSection />
       <FeaturesSection />
       <Divider />
       <DownloadSection />
