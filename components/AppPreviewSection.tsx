@@ -154,26 +154,28 @@ function MockWindow({
 export function AppPreviewSection() {
   return (
     <section id="how-it-works" className="preview-section">
-      <div className="preview-header reveal">
-        <p className="preview-label">The morning flow</p>
-        <h2 className="preview-heading">
-          Five steps.
-          <br />
-          Five minutes.
-        </h2>
-        <p className="preview-sub">
-          A guided ritual that takes you from asleep to intentional — every morning.
-        </p>
-      </div>
-
-      <div className="preview-track-wrap">
-        <div className="preview-fade-left" />
-        <div className="preview-track reveal-stagger">
-          {screens.map((s, i) => (
-            <MockWindow key={s.step} screen={s} index={i} />
-          ))}
+      <div className="preview-sticky">
+        <div className="preview-header reveal">
+          <p className="preview-label">The morning flow</p>
+          <h2 className="preview-heading">
+            Five steps.
+            <br />
+            Five minutes.
+          </h2>
+          <p className="preview-sub">
+            A guided ritual that takes you from asleep to intentional — every morning.
+          </p>
         </div>
-        <div className="preview-fade-right" />
+
+        <div className="preview-track-wrap">
+          <div className="preview-fade-left" />
+          <div className="preview-track reveal-stagger">
+            {screens.map((s, i) => (
+              <MockWindow key={s.step} screen={s} index={i} />
+            ))}
+          </div>
+          <div className="preview-fade-right" />
+        </div>
       </div>
     </section>
   )

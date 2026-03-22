@@ -35,44 +35,45 @@ export function ClientInit() {
     const heroHandler = () => posthog?.capture('download_clicked', { platform: 'hero_cta' })
     heroCta?.addEventListener('click', heroHandler)
 
-    // Auto-scroll preview track on smaller screens as user scrolls past section
+    // Sticky scroll: lock section, advance through steps, then release
     const track = document.querySelector<HTMLElement>('.preview-track')
     const section = document.querySelector<HTMLElement>('.preview-section')
-    let autoScrollEnabled = true
+    const stickyEl = document.querySelector<HTMLElement>('.preview-sticky')
+    const cards = document.querySelectorAll<HTMLElement>('.mock-card')
 
-    const onTrackInteract = () => { autoScrollEnabled = false }
-    track?.addEventListener('pointerdown', onTrackInteract)
-    track?.addEventListener('wheel', onTrackInteract, { passive: true })
-
-    const onPageScroll = () => {
-      if (!track || !section || !autoScrollEnabled) return
-      if (window.innerWidth >= 1200) return // all visible, no need
+    const onStickyScroll = () => {
+      if (!track || !section || !stickyEl || cards.length === 0) return
 
       const rect = section.getBoundingClientRect()
-      const sectionH = section.offsetHeight
-      const viewH = window.innerHeight
+      const stickyH = stickyEl.offsetHeight
+      const scrollableDistance = section.offsetHeight - stickyH
 
-      // Progress: 0 when section top enters viewport, 1 when section bottom leaves
-      const scrollStart = rect.top + viewH * 0.3
-      const scrollEnd = rect.bottom - viewH * 0.5
-      const range = scrollEnd - scrollStart
+      if (scrollableDistance <= 0) return
 
-      if (range <= 0) return
+      // How far we've scrolled into the section (0 at top, scrollableDistance at bottom)
+      const scrolled = Math.max(0, -rect.top)
+      const progress = Math.min(1, scrolled / scrollableDistance)
 
-      const progress = Math.max(0, Math.min(1, (viewH - scrollStart) / range))
+      // Scroll track horizontally
       const maxScroll = track.scrollWidth - track.clientWidth
-
       if (maxScroll > 0) {
+        track.style.scrollBehavior = 'auto'
         track.scrollLeft = progress * maxScroll
       }
+
+      // Highlight active card
+      const stepIndex = Math.min(cards.length - 1, Math.floor(progress * cards.length))
+      cards.forEach((card, i) => {
+        card.classList.toggle('active', i === stepIndex)
+      })
     }
 
-    window.addEventListener('scroll', onPageScroll, { passive: true })
+    window.addEventListener('scroll', onStickyScroll, { passive: true })
+    // Run once on mount
+    onStickyScroll()
 
     return () => {
-      window.removeEventListener('scroll', onPageScroll)
-      track?.removeEventListener('pointerdown', onTrackInteract)
-      track?.removeEventListener('wheel', onTrackInteract)
+      window.removeEventListener('scroll', onStickyScroll)
       observer.disconnect()
       heroCta?.removeEventListener('click', heroHandler)
     }

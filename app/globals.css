@@ -800,12 +800,24 @@ footer {
   .mock-window { width: 280px; height: 370px; }
   .mock-info { max-width: 280px; }
   .preview-track { padding: 24px 24px 32px; }
+  .preview-sticky { padding: 70px 0 24px; }
 }
 
 /* ── APP PREVIEW ── */
 .preview-section {
-  padding: 100px 0;
+  height: 350vh;
+  position: relative;
+}
+
+.preview-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
+  padding: 90px 0 40px;
 }
 
 .preview-header {
@@ -866,51 +878,21 @@ footer {
   display: flex;
   gap: 28px;
   overflow-x: auto;
-  padding: 24px 80px 40px;
+  padding: 24px 48px 40px;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
 }
 .preview-track::-webkit-scrollbar { display: none; }
 
-.mock-card {
-  scroll-snap-align: center;
+/* Right padding so last card doesn't hit the edge */
+.preview-track::after {
+  content: '';
+  flex-shrink: 0;
+  width: 24px;
 }
 
-/* Large screens: fit all 5, no scroll needed */
-@media (min-width: 1200px) {
-  .preview-track {
-    justify-content: center;
-    overflow-x: visible;
-    scroll-snap-type: none;
-    gap: 16px;
-    padding: 24px 24px 40px;
-  }
-  .mock-card {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-  .mock-window {
-    width: 100%;
-    height: 360px;
-  }
-  .mock-info { max-width: 100%; }
-  .mock-reading-text,
-  .mock-textarea,
-  .mock-question { font-size: 12px; }
-  .mock-done-btn { font-size: 11px; padding: 6px 14px; }
-  .mock-timer { font-size: 10px; padding: 5px 12px; }
-  .preview-fade-left,
-  .preview-fade-right { display: none; }
-}
-
-@media (min-width: 1500px) {
-  .mock-card { flex: 0 1 260px; }
-  .mock-window { height: 380px; }
-  .mock-info { max-width: 260px; }
-  .preview-track { gap: 24px; }
-}
+/* Hide left fade — cards start flush with page padding */
+.preview-fade-left { display: none; }
 
 /* ── MOCK WINDOW (matches real Araw app) ── */
 .mock-window {
@@ -1124,6 +1106,13 @@ footer {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  opacity: 0.4;
+  transform: scale(0.95);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.mock-card.active {
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* step info below window */
