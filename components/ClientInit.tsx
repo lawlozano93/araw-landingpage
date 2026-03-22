@@ -35,8 +35,44 @@ export function ClientInit() {
     const heroHandler = () => posthog?.capture('download_clicked', { platform: 'hero_cta' })
     heroCta?.addEventListener('click', heroHandler)
 
+    // Auto-scroll preview track on smaller screens as user scrolls past section
+    const track = document.querySelector<HTMLElement>('.preview-track')
+    const section = document.querySelector<HTMLElement>('.preview-section')
+    let autoScrollEnabled = true
+
+    const onTrackInteract = () => { autoScrollEnabled = false }
+    track?.addEventListener('pointerdown', onTrackInteract)
+    track?.addEventListener('wheel', onTrackInteract, { passive: true })
+
+    const onPageScroll = () => {
+      if (!track || !section || !autoScrollEnabled) return
+      if (window.innerWidth >= 1200) return // all visible, no need
+
+      const rect = section.getBoundingClientRect()
+      const sectionH = section.offsetHeight
+      const viewH = window.innerHeight
+
+      // Progress: 0 when section top enters viewport, 1 when section bottom leaves
+      const scrollStart = rect.top + viewH * 0.3
+      const scrollEnd = rect.bottom - viewH * 0.5
+      const range = scrollEnd - scrollStart
+
+      if (range <= 0) return
+
+      const progress = Math.max(0, Math.min(1, (viewH - scrollStart) / range))
+      const maxScroll = track.scrollWidth - track.clientWidth
+
+      if (maxScroll > 0) {
+        track.scrollLeft = progress * maxScroll
+      }
+    }
+
+    window.addEventListener('scroll', onPageScroll, { passive: true })
+
     return () => {
-      window.removeEventListener('scroll', () => {})
+      window.removeEventListener('scroll', onPageScroll)
+      track?.removeEventListener('pointerdown', onTrackInteract)
+      track?.removeEventListener('wheel', onTrackInteract)
       observer.disconnect()
       heroCta?.removeEventListener('click', heroHandler)
     }
