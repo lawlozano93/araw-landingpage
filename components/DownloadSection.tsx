@@ -17,7 +17,14 @@ export function DownloadSection() {
 
         <div className="version-badge reveal">
           <span className="version-dot" />
-          Latest: v0.1.6 · March 2026
+          <a
+            href="https://github.com/lawlozano93/araw/releases/latest"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'var(--ink-muted)', textDecoration: 'none', borderBottom: '1px solid var(--warm-border)', paddingBottom: '1px' }}
+          >
+            View latest release on GitHub →
+          </a>
         </div>
 
         <div className="platform-grid reveal-stagger">

@@ -22,7 +22,7 @@ export function Hero() {
       </svg>
 
       <p className="hero-kicker">
-        Filipino · <em>ˈa·raw</em> · n.
+        Filipino · <em>ah·rao</em> · n.
       </p>
       <div className="hero-sun">☀️</div>
       <h1 className="hero-title">Araw</h1>
@@ -44,11 +44,6 @@ export function Hero() {
         >
           View source ↗
         </a>
-      </div>
-
-      <div className="hero-scroll-hint">
-        <div className="scroll-line" />
-        Scroll
       </div>
     </section>
   )

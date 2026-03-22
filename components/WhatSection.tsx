@@ -19,7 +19,7 @@ export function WhatSection() {
 
         <div className="etymology-card reveal" style={{ transitionDelay: '0.15s' }}>
           <div className="etymology-word">araw</div>
-          <div className="etymology-roman">/ ˈa·raw / · Filipino</div>
+          <div className="etymology-roman">/ ah·rao / · Filipino</div>
           <ul className="etymology-defs">
             <li>
               <span className="num">1.</span> The sun. The light that begins the day.

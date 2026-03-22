@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Amatic_SC, Lora, DM_Mono } from 'next/font/google'
+import { Amatic_SC, Lora, DM_Mono, Patrick_Hand, Lato } from 'next/font/google'
 import { PostHogProvider } from '@/components/PostHogProvider'
 import './globals.css'
 
@@ -21,6 +21,20 @@ const dmMono = DM_Mono({
   weight: ['300', '400'],
   subsets: ['latin'],
   variable: '--font-mono',
+  display: 'swap',
+})
+
+const patrickHand = Patrick_Hand({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-app',
+  display: 'swap',
+})
+
+const lato = Lato({
+  weight: ['400'],
+  subsets: ['latin'],
+  variable: '--font-app-stream',
   display: 'swap',
 })
 
@@ -50,7 +64,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${amaticSC.variable} ${lora.variable} ${dmMono.variable}`}>
+      <body className={`${amaticSC.variable} ${lora.variable} ${dmMono.variable} ${patrickHand.variable} ${lato.variable}`}>
         <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>

@@ -1,110 +1,100 @@
-// Server Component
+// Server Component — CSS-only mockups matching the real Araw app UI
 
 const screens = [
   {
-    step: '01',
+    step: 1,
     label: 'Goals',
-    icon: '🎯',
-    title: 'Review your goals',
     content: (
-      <div className="win-goals">
-        <p className="win-prompt">What are you working towards?</p>
-        <ul className="win-goal-list">
-          {[
-            'Build a daily morning ritual',
-            'Ship one meaningful project this quarter',
-            'Exercise 3× per week',
-            'Read 20 pages every day',
-          ].map((g) => (
-            <li key={g} className="win-goal-item">
-              <span className="win-goal-dot" />
-              {g}
-            </li>
-          ))}
-        </ul>
+      <div className="mock-reading">
+        <p className="mock-reading-text">
+          Build a daily morning ritual that keeps me grounded.
+          {'\n\n'}
+          Ship one meaningful project this quarter.
+          {'\n\n'}
+          Exercise 3× per week — no excuses.
+          {'\n\n'}
+          Read 20 pages every day.
+        </p>
+        <div className="mock-btn-wrap">
+          <span className="mock-done-btn">Done Reading</span>
+        </div>
       </div>
     ),
   },
   {
-    step: '02',
+    step: 2,
     label: 'Affirmations',
-    icon: '🧠',
-    title: 'Prime your mindset',
     content: (
-      <div className="win-affirmation">
-        <span className="win-quote-mark">"</span>
-        <p className="win-quote-text">
-          I am capable of creating
-          <br />
-          something that matters.
+      <div className="mock-reading">
+        <p className="mock-reading-text centered">
+          I am capable of creating something that matters.
+          {'\n\n'}
+          I trust the process, even when progress feels slow.
+          {'\n\n'}
+          Today, I choose focus over distraction.
         </p>
-        <p className="win-quote-attr">— your affirmation</p>
-        <div className="win-affirmation-dots">
-          <span className="aff-dot active" />
-          <span className="aff-dot" />
-          <span className="aff-dot" />
+        <div className="mock-btn-wrap">
+          <span className="mock-done-btn">Done Reading</span>
         </div>
       </div>
     ),
   },
   {
-    step: '03',
+    step: 3,
     label: 'Visualize',
-    icon: '👁',
-    title: 'See it before it happens',
     content: (
-      <div className="win-visualize">
-        <p className="win-prompt">
-          Close your eyes. Imagine the day going exactly as you intended...
+      <div className="mock-reading">
+        <p className="mock-reading-text centered">
+          Close your eyes. See the day going exactly as you intended.
+          {'\n\n'}
+          What does it look like when you finish the one thing that matters most?
         </p>
-        <div className="win-textarea-mock">
-          <span className="win-textarea-text">
-            I see myself calm and focused, finishing the work early.
-            The afternoon is clear. I feel proud of what I shipped...
-          </span>
-          <span className="win-cursor" />
+        <div className="mock-btn-wrap">
+          <span className="mock-done-btn">Done Reading</span>
         </div>
       </div>
     ),
   },
   {
-    step: '04',
+    step: 4,
     label: 'Freewrite',
-    icon: '✍️',
-    title: 'Empty your head',
     content: (
-      <div className="win-freewrite">
-        <p className="win-prompt">Write whatever comes to mind. No judgment.</p>
-        <div className="win-textarea-mock freewrite">
-          <span className="win-textarea-text">
-            Feeling a bit scattered this morning but the coffee is helping.
-            I keep thinking about the landing page — it&apos;s almost there.
-            Need to remember to call back...
+      <div className="mock-stream">
+        <div className="mock-textarea">
+          <span className="mock-textarea-content">
+            Feeling a bit scattered this morning but the coffee is helping. I keep thinking about
+            the landing page — it&apos;s almost there. Need to remember to call back about...
           </span>
-          <span className="win-cursor" />
+          <span className="mock-caret" />
+        </div>
+        <div className="mock-btn-wrap">
+          <span className="mock-timer">5:00</span>
+          <span className="mock-done-btn">Continue</span>
         </div>
       </div>
     ),
   },
   {
-    step: '05',
+    step: 5,
     label: 'One Action',
-    icon: '💡',
-    title: 'Define the one thing',
     content: (
-      <div className="win-oneaction">
-        <p className="win-prompt">What is the single most important thing you&apos;ll do today?</p>
-        <div className="win-action-input">
-          Finish and publish the Araw landing page.
-          <span className="win-cursor" />
+      <div className="mock-answer">
+        <p className="mock-question">
+          What is the ONE most important thing I must do today to move closer to what I want?
+        </p>
+        <div className="mock-answer-input">
+          Finish and ship the Araw landing page.
+          <span className="mock-caret" />
         </div>
-        <div className="win-action-btn">Close and go do it →</div>
+        <div className="mock-btn-wrap">
+          <span className="mock-done-btn">Complete Session</span>
+        </div>
       </div>
     ),
   },
 ]
 
-function AppWindow({
+function MockWindow({
   screen,
   index,
 }: {
@@ -112,37 +102,34 @@ function AppWindow({
   index: number
 }) {
   return (
-    <div className="app-window reveal" style={{ ['--i' as string]: index }}>
-      {/* macOS chrome */}
-      <div className="window-chrome">
-        <div className="traffic-lights">
-          <span className="tl tl-red" />
-          <span className="tl tl-yellow" />
-          <span className="tl tl-green" />
+    <div className="mock-window reveal" style={{ ['--i' as string]: index }}>
+      {/* Title bar */}
+      <div className="mock-titlebar">
+        <div className="mock-traffic">
+          <span className="mock-tl" style={{ background: '#ff5f57' }} />
+          <span className="mock-tl" style={{ background: '#ffbd2e' }} />
+          <span className="mock-tl" style={{ background: '#28c940' }} />
         </div>
-        <span className="window-title-bar">Araw — step {screen.step} of 5</span>
       </div>
 
-      {/* Window body */}
-      <div className="window-body">
-        {/* Sidebar */}
-        <div className="win-sidebar">
-          {screens.map((s) => (
-            <div
-              key={s.step}
-              className={`win-sidebar-step${s.step === screen.step ? ' active' : ''}`}
-            >
-              <span className="win-step-icon">{s.icon}</span>
-              <span className="win-step-label">{s.label}</span>
-            </div>
-          ))}
-        </div>
+      {/* App content */}
+      <div className="mock-app-body">
+        {screen.content}
+      </div>
 
-        {/* Content */}
-        <div className="win-content">
-          <p className="win-content-title">{screen.title}</p>
-          {screen.content}
-        </div>
+      {/* Progress dots */}
+      <div className="mock-progress">
+        {[1, 2, 3, 4, 5].map((s) => (
+          <span
+            key={s}
+            className={`mock-dot${s <= screen.step ? ' done' : ''}${s === screen.step ? ' current' : ''}`}
+          />
+        ))}
+      </div>
+
+      {/* Step label */}
+      <div className="mock-step-label">
+        Step {screen.step} · {screen.label}
       </div>
     </div>
   )
@@ -167,7 +154,7 @@ export function AppPreviewSection() {
         <div className="preview-fade-left" />
         <div className="preview-track reveal-stagger">
           {screens.map((s, i) => (
-            <AppWindow key={s.step} screen={s} index={i} />
+            <MockWindow key={s.step} screen={s} index={i} />
           ))}
         </div>
         <div className="preview-fade-right" />
