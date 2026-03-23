@@ -821,7 +821,7 @@ footer {
 
 /* ── APP PREVIEW ── */
 .preview-section {
-  height: 350vh;
+  height: 280vh;
   position: relative;
 }
 
@@ -912,10 +912,10 @@ footer {
 .preview-fade-left { display: none; }
 
 @media (min-width: 1200px) {
-  .preview-track { padding-left: 80px; padding-right: 80px; }
+  .preview-track { padding-left: 18vw; padding-right: 80px; }
 }
 @media (min-width: 1600px) {
-  .preview-track { padding-left: 120px; padding-right: 120px; }
+  .preview-track { padding-left: 20vw; padding-right: 120px; }
 }
 
 /* ── MOCK WINDOW (matches real Araw app) ── */
